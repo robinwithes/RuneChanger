@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.stirante.RuneChanger.RuneChanger;
 import com.stirante.RuneChanger.gui.Constants;
 import static com.stirante.RuneChanger.gui.Constants.IGNORE_UPDATES;
+import static com.stirante.RuneChanger.gui.Settings.mainStage;
 import static com.stirante.RuneChanger.gui.SettingsController.showWarning;
 import com.stirante.RuneChanger.model.github.Asset;
 import com.stirante.RuneChanger.model.github.Release;
@@ -105,9 +106,11 @@ public class AutoUpdater
 		System.out.println("User is running version: 1.8\nLatest version: " + this.latestReleaseVersion);
 		if (IGNORE_UPDATES)
 			return;
-		
+
 		if (!this.checkVersion() && this.updatePopup())
 		{
+			mainStage.hide();
+			showWarning("Updater", "Runechanger is preparing to update..\nPlease do not close the program, it will restart automatically.", null);
 			this.downloadUpdate();
 		}
 
