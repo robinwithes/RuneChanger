@@ -30,6 +30,8 @@ public class SettingsController {
     private JFXButton loadBtn;
     @FXML
     private JFXButton removeBtn;
+	@FXML
+	private Label versionLabel;
     @FXML
     private ImageView btn_settings;
     @FXML
@@ -168,6 +170,7 @@ public class SettingsController {
         loadPreferences();
         settingsPane.setVisible(true);
         currentPane = settingsPane;
+        versionLabel.setText("Version: " + Constants.VERSION_STRING);
         fade(mainPane, 1750, 0, 1).playFromStart();
     }
 

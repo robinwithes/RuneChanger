@@ -6,8 +6,9 @@ public class Constants {
     //app name
     public static final String APP_NAME = "RuneChanger";
 
-    //version string
+    //version info
     public static final String VERSION_STRING = "1.8";
+    public static final boolean IGNORE_UPDATES = false;
 
     //github latest release url
     public static final String LATEST_RELEASE_URL = "https://api.github.com/repos/stirante/RuneChanger/releases/latest";
