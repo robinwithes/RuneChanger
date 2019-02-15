@@ -65,7 +65,7 @@ public class AutoUpdater {
 			if (jarDir.exists()) {
 				System.out.println(jarDir); //TODO temp
 				System.out.println("Detected old jar and scheduled it for deletion.");
-				FileUtils.forceDeleteOnExit(jarDir);
+				Runtime.getRuntime().exec("cmd /c ping localhost -n 6 > nul && del " + jarDir.getAbsolutePath());
 			}
 
 			System.out.println("Downloading");
