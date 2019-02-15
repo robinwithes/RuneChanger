@@ -1,6 +1,7 @@
 package com.stirante.RuneChanger.gui;
 
 import com.stirante.RuneChanger.RuneChanger;
+import com.stirante.RuneChanger.util.AutoUpdater;
 import com.stirante.RuneChanger.util.LangHelper;
 import generated.LolLootPlayerLoot;
 import javafx.application.Application;
@@ -120,6 +121,13 @@ public class Settings extends Application {
         stage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - stage.getHeight());
         Platform.setImplicitExit(false);
         stage.show();
+		try {
+			AutoUpdater updater = new AutoUpdater();
+			updater.checkForUpdate();
+		} catch (IOException var8) {
+			System.out.println("Can't connect to update server");
+			var8.printStackTrace();
+		}
     }
 
 }
