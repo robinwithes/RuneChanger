@@ -138,6 +138,7 @@ public class RuneChanger {
     }
 
     public static void main(String[] args) {
+		System.out.println(args);
         Elevate.elevate(args);
         checkOperatingSystem();
         SimplePreferences.load();

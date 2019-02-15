@@ -1,6 +1,7 @@
 package com.stirante.RuneChanger.util;
 
 import com.google.gson.Gson;
+import com.stirante.RuneChanger.gui.Constants;
 import com.stirante.RuneChanger.model.github.Asset;
 import com.stirante.RuneChanger.model.github.Release;
 import java.io.File;
@@ -15,7 +16,6 @@ import javafx.scene.control.ButtonType;
 import org.apache.commons.io.FileUtils;
 
 public class AutoUpdater {
-	File jarDir = new File(System.getProperty("user.dir"));
 	public static final String LATEST_RELEASE_URL = "https://api.github.com/repos/stirante/RuneChanger/releases/latest";
 	private String downloadLink;
 	public String latestReleaseVersion;
@@ -50,10 +50,8 @@ public class AutoUpdater {
 	}
 
 	private void downloadUpdate() {
-		InputStream input = null;
-		HttpURLConnection connection = null;
-
 		try {
+			HttpURLConnection connection;
 			URL url = new URL(this.downloadLink);
 			connection = (HttpURLConnection)url.openConnection();
 			connection.connect();
@@ -63,9 +61,11 @@ public class AutoUpdater {
 
 			connection.disconnect();
 			File newJar = new File("RuneChanger-" + this.latestReleaseVersion + ".jar");
-			if (this.jarDir.exists()) {
+			File jarDir = new File(System.getProperty("user.dir") + "\\RuneChanger-" + Constants.VERSION_STRING + ".jar");
+			if (jarDir.exists()) {
+				System.out.println(jarDir); //TODO temp
 				System.out.println("Detected old jar and scheduled it for deletion.");
-				FileUtils.forceDeleteOnExit(this.jarDir);
+				FileUtils.forceDeleteOnExit(jarDir);
 			}
 
 			System.out.println("Downloading");
